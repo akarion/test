@@ -25,6 +25,8 @@ public class Methods {
 //	}
 	
 	
+	
+	
 	public static int startRooms = 1;
 	public static int inexNumber = 1;
 	
@@ -539,7 +541,7 @@ public class Methods {
 		while(otherIndexes<=5){
 			if(otherIndexes == ratingIndex){otherIndexes++;} //to exclude valid 
 			if(otherIndexes == ratingIndex+1 && otherIndexes!=5){otherIndexes++;}
-			if(otherIndexes==5){break;}
+			if(otherIndexes==5 && ratingIndex==4){break;}
 			
 			System.out.println("Current index value for check is: "+otherIndexes);
 			
