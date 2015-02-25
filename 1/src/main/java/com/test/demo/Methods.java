@@ -523,7 +523,7 @@ public class Methods {
 	public void verifyStarRating(int ratingIndex, WebDriver driver) throws InterruptedException{
 		
 		/*
-		
+		s
 		Verifies whether only correct star rating hotels are present on search results page by
 		checking if there is no 
 		
