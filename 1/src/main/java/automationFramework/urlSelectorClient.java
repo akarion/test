@@ -20,46 +20,64 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class urlSelectorClient {
 
-	String langCode;
+	static String langCode;
 	static String siteURL;
 	
-	private static String getURL() throws InvalidFormatException, IOException{
+	public static String  getURL() throws InvalidFormatException, IOException{
 			
-		FileInputStream fis = new FileInputStream("C:/GIT/1/src/main/java/testData/Desktop/testData.xlsx");
+		FileInputStream fis = new FileInputStream("C://GIT/1/src/main/java/automationFramework/testData.xlsx");
 		
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sheet = wb.getSheetAt(0);
 		
-		CellReference cellRef = new CellReference(1, 0);
+		CellReference urlRef = new CellReference(1, 0);
 		
-		Row row = sheet.getRow(cellRef.getRow());
-		Cell cell = row.getCell(cellRef.getCol());
+		Row urlRow = sheet.getRow(urlRef.getRow());
+		Cell urlCell = urlRow.getCell(urlRef.getCol());
 		
-		siteURL = cell.getRichStringCellValue().getString();
+		if(langCode!=null){
+		siteURL = urlCell.getRichStringCellValue().getString()+langCode;}
 		
+		else{
+			siteURL = urlCell.getRichStringCellValue().getString();
+		}
 		
-		
-
-	
-	
-	
-	return siteURL;
+        		
+		return siteURL;
 	
 	}
 	
 
-	public static String setLanguageCode(String langCode){
+	public static String getLanguageCode() throws InvalidFormatException, IOException{
 		
+        FileInputStream fis = new FileInputStream("C://GIT/1/src/main/java/automationFramework/testData.xlsx");
 		
+		Workbook wb = WorkbookFactory.create(fis); 
+		Sheet sheet = wb.getSheetAt(0); //chooses sheet 1 (default)
 		
+		CellReference langRef = new CellReference(1, 1); //references a cell with language code 
+		
+		Row langRow = sheet.getRow(langRef.getRow());
+		Cell langCell = langRow.getCell(langRef.getCol());
+		
+		langCode = "?lang="+langCell.getRichStringCellValue().getString();
 		
 		return langCode;
 	}
 	
-	public static void main(String[] args) throws Exception { 
-		
-		getURL();
-		System.out.println(siteURL);}
+//	public static void main(String[] args) throws Exception { 
+//		
+//		getLanguageCode();
+//		System.out.println(langCode);
+//		
+//		getURL();
+//		System.out.println(siteURL);
+//		
+//		
+//		
+//	
+//	
+//	}
 	
 	
 }
